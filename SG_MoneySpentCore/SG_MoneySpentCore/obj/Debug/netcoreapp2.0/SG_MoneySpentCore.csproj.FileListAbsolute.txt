@@ -1,0 +1,11 @@
+C:\GitHub\SG_MoneySpentCore\SG_MoneySpentCore\SG_MoneySpentCore\bin\Debug\netcoreapp2.0\SG_MoneySpentCore.deps.json
+C:\GitHub\SG_MoneySpentCore\SG_MoneySpentCore\SG_MoneySpentCore\bin\Debug\netcoreapp2.0\SG_MoneySpentCore.runtimeconfig.json
+C:\GitHub\SG_MoneySpentCore\SG_MoneySpentCore\SG_MoneySpentCore\bin\Debug\netcoreapp2.0\SG_MoneySpentCore.runtimeconfig.dev.json
+C:\GitHub\SG_MoneySpentCore\SG_MoneySpentCore\SG_MoneySpentCore\bin\Debug\netcoreapp2.0\SG_MoneySpentCore.dll
+C:\GitHub\SG_MoneySpentCore\SG_MoneySpentCore\SG_MoneySpentCore\bin\Debug\netcoreapp2.0\SG_MoneySpentCore.pdb
+C:\GitHub\SG_MoneySpentCore\SG_MoneySpentCore\SG_MoneySpentCore\obj\Debug\netcoreapp2.0\SG_MoneySpentCore.csprojResolveAssemblyReference.cache
+C:\GitHub\SG_MoneySpentCore\SG_MoneySpentCore\SG_MoneySpentCore\obj\Debug\netcoreapp2.0\SG_MoneySpentCore.csproj.CoreCompileInputs.cache
+C:\GitHub\SG_MoneySpentCore\SG_MoneySpentCore\SG_MoneySpentCore\obj\Debug\netcoreapp2.0\SG_MoneySpentCore.AssemblyInfoInputs.cache
+C:\GitHub\SG_MoneySpentCore\SG_MoneySpentCore\SG_MoneySpentCore\obj\Debug\netcoreapp2.0\SG_MoneySpentCore.AssemblyInfo.cs
+C:\GitHub\SG_MoneySpentCore\SG_MoneySpentCore\SG_MoneySpentCore\obj\Debug\netcoreapp2.0\SG_MoneySpentCore.dll
+C:\GitHub\SG_MoneySpentCore\SG_MoneySpentCore\SG_MoneySpentCore\obj\Debug\netcoreapp2.0\SG_MoneySpentCore.pdb
