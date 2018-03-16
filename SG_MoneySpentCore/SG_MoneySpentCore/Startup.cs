@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SG_MoneySpentCore.Data;
 
 namespace SG_MoneySpentCore
 {
@@ -21,6 +23,9 @@ namespace SG_MoneySpentCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<SpentContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddMvc();
         }
 
@@ -46,5 +51,7 @@ namespace SG_MoneySpentCore
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+
+
     }
 }

@@ -1,10 +1,25 @@
-﻿
+﻿@using Chart.Mvc.SimpleChart
+@model ItemSpent
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <body>
-<div id="myPie" class="row" style="height: 50%">
-    @await Html.PartialAsync("Pie")
+<div class="container" >
+    <center>
+        <h1>Student Guru Money Spent</h1>
+
+        <div class="jumbotron">
+            
+            <h2>Balance:</h2>
+            <h2>@ViewBag.user $</h2>
+        </div>
+      
+        <form method="post" asp-action="Index">
+            <select asp-for="CategoryId" asp-items="@(new SelectList(@ViewBag.listofcat,"Id","Name"))"></select>
+            <input id="amount" asp-for="Value"></input>
+            <input type="submit" value="Spent it!" />
+        </form>
+    </center>
 </div>
 </body>
