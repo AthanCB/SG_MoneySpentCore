@@ -22,7 +22,9 @@ namespace SG_MoneySpentCore.Data
                 new Category() {Id = Guid.NewGuid().ToString("N"), Name = "Food"},
                 new Category() {Id = Guid.NewGuid().ToString("N"), Name = "Drinks"},
                 new Category() {Id = Guid.NewGuid().ToString("N"), Name = "Clothing"},
-                new Category() {Id = Guid.NewGuid().ToString("N"), Name = "Bills"}
+                new Category() {Id = Guid.NewGuid().ToString("N"), Name = "Bills"},
+                new Category() {Id = Guid.NewGuid().ToString("N"), Name = "Earn"}
+                
             };
 
             foreach (var category in categories)

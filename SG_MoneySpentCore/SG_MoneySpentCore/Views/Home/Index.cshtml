@@ -1,25 +1,118 @@
 ﻿@using Chart.Mvc.SimpleChart
-@model ItemSpent
+@model Balance
 @{
     ViewData["Title"] = "Home Page";
 }
-
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
 <body>
-<div class="container" >
+
+<div class="container">
     <center>
         <h1>Student Guru Money Spent</h1>
 
         <div class="jumbotron">
-            
+           
             <h2>Balance:</h2>
-            <h2>@ViewBag.user $</h2>
+            <h2>@ViewBag.user €</h2>
+            <div id="piechart"></div>
         </div>
-      
-        <form method="post" asp-action="Index">
-            <select asp-for="CategoryId" asp-items="@(new SelectList(@ViewBag.listofcat,"Id","Name"))"></select>
-            <input id="amount" asp-for="Value"></input>
-            <input type="submit" value="Spent it!" />
-        </form>
+        <div class="col-lg-12 jumbotron">
+
+            <div style="align-content: center" class=" col-lg-12">
+                <h2>Add/Spend Money</h2>
+                <br/>
+                <form method="post" asp-action="Index">
+
+                    <input type="radio" asp-for="Type" value="@BalanceType.Add" checked="checked" onclick="disablelist(true);"/>
+                    <input type="radio" asp-for="Type" value="@BalanceType.Spend" onclick="disablelist(false);"/>
+                    @*<select class="form-control" style="width: 30%" asp-items="@(new SelectList(new List<string>(){"Add","Spend"}))"></select>*@
+                    <br/>
+                    <select id="dropdownlist" class="form-control" style="width: 30%; display: none" asp-for="CategoryId" asp-items="@(new SelectList(@ViewBag.listofcat, "Id", "Name"))"></select>
+                    <br/>
+                    <input id="amount" class="form-control" style="width: 30%" asp-for="Value"></input>
+                    <br/>
+                    <input type="submit" id="button" class="form-control btn-primary" style="width: 30%" value="Add them!"/>
+
+                </form>
+            </div>
+        </div>
+
+
+    </center>
+
+</div>
+<div class="jumbotron">
+    <center>
+        <h2>Balance History:</h2>
+        <ul>
+            @foreach (var item in ViewBag.listofbalances)
+            {
+                <li>
+                    @Html.Encode(((List<Category>) ViewBag.listofcat).FirstOrDefault(x => x.Id.Equals(item.CategoryId)).Name)
+                    @Html.Encode(item.Value) €
+                </li>
+
+            }
+        </ul>
     </center>
 </div>
-</body>
+<script>
+    function disablelist(s) {
+        var ele = document.getElementById("dropdownlist");
+        var button = document.getElementById("button");
+
+        if (s == true) {
+            ele.style.display = "none";
+            button.value = "Add Them!";
+        } else {
+            ele.style.display = "block";
+            button.value = "Spend Them!";
+        }
+
+    }
+</script>
+
+<script type="text/javascript">
+    // Load google charts
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+    var totalsum = 0;
+    @foreach (var i in ViewBag.listofbalances)
+        {
+            if (i.Value <0)
+                {
+
+                     @:totalsum += abs(i.Value)
+                }
+        }
+    // Draw the chart and set the chart values
+
+    function drawChart() {
+        var sum = 0;
+
+            var data = google.visualization.arrayToDataTable([['Task', 'Hours per Day'],
+            @foreach (var i in ViewBag.listofcat)
+            {
+               /*
+                foreach (var j in ViewBag.listofbalances)
+                {
+                    if (i.Id.Equals(j.CategoryId) && j.Value < 0)
+                    {
+
+                        @:sum += abs(i.Value)
+                    }
+                }*/
+                @:['@i.Name', 1],
+            }
+
+       ] );
+
+        // Optional; add a title and set the width and height of the chart
+        var options = { 'title': 'My Spents', 'width': 400, 'height': 300 };
+
+        // Display the chart inside the <div> element with id="piechart"
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+    }
+</script>
+</body >

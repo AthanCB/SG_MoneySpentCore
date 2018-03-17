@@ -14,14 +14,14 @@ namespace SG_MoneySpentCore.Data
         {
 
         }
-        public Microsoft.EntityFrameworkCore.DbSet<ItemSpent> ItemsSpent { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<Balance> Balances { get; set; }
         public Microsoft.EntityFrameworkCore.DbSet<Category> Categories { get; set; }
         public Microsoft.EntityFrameworkCore.DbSet<User> Users { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ItemSpent>().ToTable("ItemsSpent");
+            modelBuilder.Entity<Balance>().ToTable("Balances");
             modelBuilder.Entity<Category>().ToTable("Categories");
             modelBuilder.Entity<User>().ToTable("Users");
         }

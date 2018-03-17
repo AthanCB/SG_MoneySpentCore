@@ -25,24 +25,31 @@ namespace SG_MoneySpentCore.Controllers
        
 
         [HttpPost]
-        public IActionResult Index(ItemSpent item)
+        public IActionResult Index(Balance item)
         {
             item.Id = Guid.NewGuid().ToString("N");
-            _context.ItemsSpent.Add(item);
             var user = _context.Users.First();
-            user.Balance -= item.Value;
+            if (item.Type.Equals(BalanceType.Add))
+            {
+                item.CategoryId = _context.Categories.FirstOrDefault(x => x.Name.Equals("Earn")).Id;
+                user.Balance += item.Value;
+                _context.Balances.Add(item);
+            }
+            else
+            {
+                user.Balance -= item.Value;
+                item.Value = -item.Value;
+                _context.Balances.Add(item);
+
+            }
+            
             _context.Users.Update(user);
             _context.SaveChanges();
             RefreshUser();
             return View(item);
         }
 
-        public IActionResult Index(ItemSpent amount)
-        {
-            
-            return View(amount);
-        }
-
+       
         public void RefreshUser()
         {
             List<Category> li = new List<Category>();
@@ -51,6 +58,7 @@ namespace SG_MoneySpentCore.Controllers
             List<User> users = new List<User>();
             users = _context.Users.ToList();
             ViewBag.user = users.First().Balance;
+            ViewBag.listofbalances = _context.Balances.ToList();
         }
 
         public IActionResult About()
