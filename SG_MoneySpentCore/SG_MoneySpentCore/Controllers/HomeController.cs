@@ -37,8 +37,9 @@ namespace SG_MoneySpentCore.Controllers
             }
             else
             {
-                user.Balance -= item.Value;
                 item.Value = -item.Value;
+                user.Balance -= item.Value;
+               
                 _context.Balances.Add(item);
 
             }
